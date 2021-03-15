@@ -8,7 +8,7 @@ object ListsTests {
     import u03.Lists.List.Nil
     import u03.Lists.List.sum
     import u03.Lists.List.append
-    import Lists.List._
+    import lab.Lists.List._
 
     val testList = Cons(1, Cons(2, Cons(3, Nil())))
 
