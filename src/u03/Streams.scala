@@ -1,6 +1,7 @@
 package u03
 
 import u03.Streams.Stream
+import scala.annotation.tailrec
 
 object Streams {
 
@@ -13,6 +14,15 @@ object Streams {
         private case class Empty[A]() extends Stream[A]
 
         private case class Cons[A](head: () => A, tail: () => Stream[A]) extends Stream[A]
+
+        val fibonacci: Stream[Int] = {
+            @tailrec
+            def _inner(n: Int, a: Int, b: Int): Int = n match {
+                case 0 => a
+                case _ => _inner(n - 1, b, a + b)
+            }
+            map(iterate(0)(_ + 1))(_inner(_, 0, 1))
+        }
 
         def empty[A](): Stream[A] = Empty()
 

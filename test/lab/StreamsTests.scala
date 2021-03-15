@@ -20,4 +20,10 @@ object StreamsTests {
         val expected = Cons("x", Cons("x", Cons("x", Cons("x", Cons("x", Nil())))))
         assertEquals(expected, toList(take(constant("x"))(5)))
     }
+
+    @Test
+    def testFibonacci() = {
+        val expected = Cons(0, Cons(1, Cons(1, Cons(2, Cons(3, Cons(5, Cons(8, Cons(13, Nil()))))))))
+        assertEquals(expected, toList(take(fibonacci)(8)))
+    }
 }
