@@ -53,6 +53,7 @@ object ListsTests {
         val plusOnePlusTwo = Cons(2, Cons(3, Cons(3, Cons(4, Cons(4, Cons(5, Nil()))))))
         assertEquals(plusOne, flatMap(testList)(x => Cons(x + 1, Nil())))
         assertEquals(plusOnePlusTwo, flatMap(testList)(x => Cons(x + 1, Cons(x + 2, Nil()))))
+        assertEquals(Nil(), flatMap(testList)(_ => Nil[Int]()))
     }
 
     @Test
