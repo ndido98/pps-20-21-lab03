@@ -42,4 +42,12 @@ object ListsTests {
         assertEquals(twoDropped, drop(testList, 2))
         assertEquals(moreThanLengthDropped, drop(testList, 5))
     }
+
+    @Test
+    def testFlatMap() = {
+        val plusOne = Cons(2, Cons(3, Cons(4, Nil())))
+        val plusOnePlusTwo = Cons(2, Cons(3, Cons(3, Cons(4, Cons(4, Cons(5, Nil()))))))
+        assertEquals(plusOne, flatMap(testList)(x => Cons(x + 1, Nil())))
+        assertEquals(plusOnePlusTwo, flatMap(testList)(x => Cons(x + 1, Cons(x + 2, Nil()))))
+    }
 }
