@@ -27,5 +27,15 @@ object Lists {
             case Cons(h, t) => Some(Math.max(h, getOrElse(max(t), Int.MinValue)))
             case Nil() => None()
         }
+
+        def foldLeft[A, B](l: List[A])(seed: => B)(operator: (B, A) => B): B = l match {
+            case Cons(h, t) => operator(foldLeft(t)(seed)(operator), h)
+            case Nil() => seed
+        }
+
+        def foldRight[A, B](l: List[A])(seed: => B)(operator: (A, B) => B): B = l match {
+            case Cons(h, t) => operator(h, foldRight(t)(seed)(operator))
+            case Nil() => seed
+        }
     }
 }

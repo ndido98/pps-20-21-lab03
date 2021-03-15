@@ -11,6 +11,7 @@ object ListsTests {
     import lab.Lists.List._
 
     val testList = Cons(1, Cons(2, Cons(3, Nil())))
+    val foldTestList = Cons(3, Cons(7, Cons(1, Cons(5, Nil()))))
 
     @Test
     def testSum() = {
@@ -61,5 +62,17 @@ object ListsTests {
         import u02.Optionals.Option._
         assertEquals(Some(3), max(testList))
         assertEquals(None(), max(Nil()))
+    }
+
+    @Test
+    def testFoldLeft() = {
+        assertEquals(-6, foldLeft(testList)(0)(_ - _))
+        assertEquals(-16, foldLeft(foldTestList)(0)(_ - _))
+    }
+
+    @Test
+    def testFoldRight() = {
+        assertEquals(2, foldRight(testList)(0)(_ - _))
+        assertEquals(-8, foldRight(foldTestList)(0)(_ - _))
     }
 }
