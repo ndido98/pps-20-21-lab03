@@ -32,4 +32,14 @@ object ListsTests {
         val odd = Cons(1, Cons(3, Nil()))
         assertEquals(odd, filter(testList)(_ % 2 == 1))
     }
+
+    @Test
+    def testDrop() = {
+        val oneDropped = Cons(2, Cons(3, Nil()))
+        val twoDropped = Cons(3, Nil())
+        val moreThanLengthDropped = Nil[Int]()
+        assertEquals(oneDropped, drop(testList, 1))
+        assertEquals(twoDropped, drop(testList, 2))
+        assertEquals(moreThanLengthDropped, drop(testList, 5))
+    }
 }
