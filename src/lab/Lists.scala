@@ -15,8 +15,7 @@ object Lists {
 
         def drop[A](l: List[A], count: Int): List[A] = l match {
             case Cons(_, t) if count > 0 => drop(t, count - 1)
-            case Cons(h, t) => Cons(h, t)
-            case Nil() => Nil()
+            case _ => l
         }
 
         def flatMap[A, B](l: List[A])(flatMapper: A => List[B]): List[B] = l match {
@@ -25,10 +24,7 @@ object Lists {
         }
 
         def max(l: List[Int]): Option[Int] = l match {
-            case Cons(h, t) => Some(Math.max(h, max(t) match {
-                case Some(x) => x
-                case None() => Int.MinValue
-            }))
+            case Cons(h, t) => Some(Math.max(h, getOrElse(max(t), Int.MinValue)))
             case Nil() => None()
         }
     }
