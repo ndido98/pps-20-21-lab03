@@ -2,23 +2,11 @@ package lab
 
 object Lists {
 
-    // A generic linked list
-    sealed trait List[E]
-
-    // a companion object (i.e., module) for List
     object List {
-        case class Cons[E](head: E, tail: List[E]) extends List[E]
-        case class Nil[E]() extends List[E]
-
-        def sum(l: List[Int]): Int = l match {
-            case Cons(h, t) => h + sum(t)
-            case _ => 0
-        }
-
-        def append[A](l1: List[A], l2: List[A]): List[A] = (l1, l2) match {
-            case (Cons(h, t), l2) => Cons(h, append(t, l2))
-            case _ => l2
-        }
+        import u02.Optionals.Option
+        import u02.Optionals.Option._
+        import u03.Lists._
+        import u03.Lists.List._
 
         def map[A,B](l: List[A])(mapper: A => B): List[B] = flatMap(l)(x => Cons(mapper(x), Nil()))
 
@@ -34,6 +22,14 @@ object Lists {
         def flatMap[A, B](l: List[A])(flatMapper: A => List[B]): List[B] = l match {
             case Cons(h, t) => append(flatMapper(h), flatMap(t)(flatMapper))
             case Nil() => Nil()
+        }
+
+        def max(l: List[Int]): Option[Int] = l match {
+            case Cons(h, t) => Some(Math.max(h, max(t) match {
+                case Some(x) => x
+                case None() => Int.MinValue
+            }))
+            case Nil() => None()
         }
     }
 }

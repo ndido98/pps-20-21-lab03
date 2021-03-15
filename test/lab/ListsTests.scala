@@ -4,6 +4,10 @@ import org.junit.jupiter.api.Assertions._
 import org.junit.jupiter.api.Test
 
 object ListsTests {
+    import u03.Lists.List.Cons
+    import u03.Lists.List.Nil
+    import u03.Lists.List.sum
+    import u03.Lists.List.append
     import Lists.List._
 
     val testList = Cons(1, Cons(2, Cons(3, Nil())))
@@ -49,5 +53,12 @@ object ListsTests {
         val plusOnePlusTwo = Cons(2, Cons(3, Cons(3, Cons(4, Cons(4, Cons(5, Nil()))))))
         assertEquals(plusOne, flatMap(testList)(x => Cons(x + 1, Nil())))
         assertEquals(plusOnePlusTwo, flatMap(testList)(x => Cons(x + 1, Cons(x + 2, Nil()))))
+    }
+
+    @Test
+    def testMax() = {
+        import u02.Optionals.Option._
+        assertEquals(Some(3), max(testList))
+        assertEquals(None(), max(Nil()))
     }
 }
