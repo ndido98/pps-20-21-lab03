@@ -29,7 +29,7 @@ object Lists {
         }
 
         def foldLeft[A, B](l: List[A])(seed: => B)(operator: (B, A) => B): B = l match {
-            case Cons(h, t) => operator(foldLeft(t)(seed)(operator), h)
+            case Cons(h, t) => foldLeft(t)(operator(seed, h))(operator)
             case Nil() => seed
         }
 

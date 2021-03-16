@@ -12,6 +12,7 @@ object ListsTests {
 
     val testList = Cons(1, Cons(2, Cons(3, Nil())))
     val foldTestList = Cons(3, Cons(7, Cons(1, Cons(5, Nil()))))
+    val foldStringList = Cons("10", Cons("20", Nil()))
 
     @Test
     def testSum() = {
@@ -68,11 +69,13 @@ object ListsTests {
     def testFoldLeft() = {
         assertEquals(-6, foldLeft(testList)(0)(_ - _))
         assertEquals(-16, foldLeft(foldTestList)(0)(_ - _))
+        assertEquals("1020", foldLeft(foldStringList)("")((acc, elem) => acc + elem))
     }
 
     @Test
     def testFoldRight() = {
         assertEquals(2, foldRight(testList)(0)(_ - _))
         assertEquals(-8, foldRight(foldTestList)(0)(_ - _))
+        assertEquals("2010", foldRight(foldStringList)("")((elem, acc) => acc + elem))
     }
 }
